@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        //Initialize Parse.
+        //Replace XXXX with the App ID and Server URL that you recieved
+        let configuration = ParseClientConfiguration { clientConfiguration in
+            clientConfiguration.applicationId = "73b9679c"
+            clientConfiguration.server = "https://ios-oken-pt-parse-server-4.herokuapp.com/parse"
+        }
+        Parse.initialize(with: configuration)
+        
+        let user = PFUser()
+        let username = "Drew"
+        let password = "Milliken"
+        user.username = username
+        user.password = password
+        user.signUpInBackground(block: { (success, error) -> Void in
+            if success {
+                print("successfully signuped a user")
+            }else {
+                PFUser.logInWithUsername(inBackground: username, password: password, block: { (user, error) -> Void in
+                    if let user = user {
+                        print("successfully logged in \(user)")
+                    }
+                })
+            }
+        })
         return true
     }
 

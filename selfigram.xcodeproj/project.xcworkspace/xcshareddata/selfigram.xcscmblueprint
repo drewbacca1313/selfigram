@@ -1,30 +1,30 @@
 {
-  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "3D2FF3517C3AD0F094833294F375DF484EC0B26F",
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "88495FF2859B3A4FA105D29EEB77E404E2C233AA",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
-    "3D2FF3517C3AD0F094833294F375DF484EC0B26F" : 9223372036854775807,
-    "7CC660C19E1C4A629FA9539B1DD66E5312172221" : 9223372036854775807
+    "7CC660C19E1C4A629FA9539B1DD66E5312172221" : 9223372036854775807,
+    "88495FF2859B3A4FA105D29EEB77E404E2C233AA" : 9223372036854775807
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "D8F4DD90-22A4-4CB8-B459-8AAF0A1E2D20",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "3D2FF3517C3AD0F094833294F375DF484EC0B26F" : "selfigram\/",
-    "7CC660C19E1C4A629FA9539B1DD66E5312172221" : "selfigram\/selfigram\/"
+    "7CC660C19E1C4A629FA9539B1DD66E5312172221" : "selfigram\/selfigram\/",
+    "88495FF2859B3A4FA105D29EEB77E404E2C233AA" : "selfigram\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "selfigram",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "selfigram.xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
     {
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:drewbacca1313\/selfigram.git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3D2FF3517C3AD0F094833294F375DF484EC0B26F"
-    },
-    {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/drewbacca1313\/selfigram.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7CC660C19E1C4A629FA9539B1DD66E5312172221"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:drewbacca1313\/selfigram.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "88495FF2859B3A4FA105D29EEB77E404E2C233AA"
     }
   ]
 }

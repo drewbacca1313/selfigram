@@ -7,24 +7,19 @@
 //
 
 import UIKit
+import Parse
 
 class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBAction func cameraButtonPressed(_ sender: AnyObject) {
         print("Camera Button Pressed")
         
-            // 1: Create an ImagePickerController
             let pickerController = UIImagePickerController()
             
-            // 2: Self in this line refers to this View Controller
-            //    Setting the Delegate Property means you want to receive a message
-            //    from pickerController when a specific event is triggered.
-            pickerController.delegate = self
+              pickerController.delegate = self
             
             if TARGET_OS_SIMULATOR == 1 {
-                // 3. We check if we are running on a Simulator
-                //    If so, we pick a photo from the simulator’s Photo Library
-                // We need to do this because the simulator does not have a camera
+                
                 pickerController.sourceType = .photoLibrary
             } else {
                 // 4. We check if we are running on an iPhone or iPad (ie: not a simulator)
@@ -50,6 +45,14 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         usernameLabel.text = "yourName"
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let user = PFUser.current() {
+            usernameLabel.text = user.username
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -58,14 +61,32 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-     
+        // 1. When the delegate method is returned, it passes along a dictionary called info.
+        //    This dictionary contains multiple things that may be useful to us.
+        //    We are getting the image from the UIImagePickerControllerOriginalImage key in that dictionary
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             
-           
-            profileViewImage.image = image
+            // setting the compression quality to 90%
+            if let imageData = UIImageJPEGRepresentation(image, 0.9),
+                let imageFile = PFFile(data: imageData),
+                let user = PFUser.current(){
+                
+                // avatarImage is a new column in our User table
+                user["avatarImage"] = imageFile
+                user.saveInBackground(block: { (success, error) -> Void in
+                    if success {
+                        // set our profileImageView to be the image we have picked
+                        let image = UIImage(data: imageData)
+                        self.profileViewImage.image = image
+                    }
+                })
+                
+            }
+            
             
         }
         
+        //3. We remember to dismiss the Image Picker from our screen.
         dismiss(animated: true, completion: nil)
         
     }
