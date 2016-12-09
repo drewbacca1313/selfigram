@@ -21,6 +21,10 @@ class Post: PFObject, PFSubclassing {
         return "Post"
     }
     
+    var likes: PFRelation<PFObject>! {
+        return relation(forKey: "likes")
+    }
+    
 //    let imageURL:URL
 //    let user:User
 //    let comment:String
