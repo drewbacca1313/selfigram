@@ -12,29 +12,63 @@ import Parse
 
 class FeedTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-     var posts = [Post]()
+    var posts = [Post]()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    func getPosts() {
         if let query = Post.query() {
-            
             query.order(byDescending: "createdAt")
             query.includeKey("user")
             
             query.findObjectsInBackground(block: { (posts, error) -> Void in
-                
+                self.refreshControl?.endRefreshing()
                 if let posts = posts as? [Post]{
                     self.posts = posts
                     self.tableView.reloadData()
-                    
                 }
-                
             })
         }
+    }
+    
+    
+    @IBAction func doubleTappedSelfie(_ sender: UITapGestureRecognizer) {
+        let tapLocation = sender.location(in: tableView)
+        
+        if let indexPathAtTapLocation = tableView.indexPathForRow(at: tapLocation){
+            
+            let cell = tableView.cellForRow(at: indexPathAtTapLocation) as! SelfieCell
+            
+            cell.tapAnimation()
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationItem.titleView = UIImageView(image: UIImage(named: "Selfigram-logo"))
+        getPosts()
+        
+//        if let query = Post.query() {
+//            
+//            query.order(byDescending: "createdAt")
+//            query.includeKey("user")
+//            
+//            query.findObjectsInBackground(block: { (posts, error) -> Void in
+//                
+//                if let posts = posts as? [Post]{
+//                    self.posts = posts
+//                    self.tableView.reloadData()
+//                    
+//                }
+//                
+//            })
+//        }
         
     }
+    
+    
 
+    @IBAction func refreshPulled(_ sender: AnyObject) {
+        getPosts()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
